@@ -1,0 +1,40 @@
+<div id="dim"></div>
+<div class="table-cell">
+<div class="modal">
+	<div class="menubar"><div class="closeBtn"></div><span class="btn">{{#if title}}Edit Gift Details{{else}}Add to {{listTitle}}{{/if}}</span></div>
+	<div class="form">
+		<div class="leftSide">
+			<div class="image" style="{{#if image}}background-image:url('{{image}}'){{else}}height:0;{{/if}}"></div>
+		</div>
+		<div class="rightSide">
+			<div class="formRow">
+				<label for="giftName">Gift Name</label>
+				<input id="giftName" type="text" required="true" placeholder='E.g. "Rollerblades"' {{#if title}}value="{{title}}"{{/if}} />
+			</div>
+
+			<div class="formRow">
+				<label for="gifturl">Link</label>
+				<input id="gifturl" type="url" placeholder='http://' {{#if url}}value="{{url}}"{{/if}} />
+			</div>
+			<div class="formRow">
+				<label for="imageUrl">Link to Image</label>
+				<input id="imageUrl" type="url" placeholder='http://' {{#if image}}value="{{image}}"{{/if}} />
+			</div>
+			<div class="formRow">
+				<div class="leftSide">
+					<label for="price">Price</label>
+					<input id="price" type="number" placeholder='Optional' min="1" {{#if price}}value="{{price}}"{{/if}} />
+				</div>
+				<div class="rightSide">
+					<label for="qty">Quantity</label>
+					<input id="qty" type="number" min="1" {{#if quantity}}value="{{quantity}}"{{else}}value="1"{{/if}} />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="buttons">
+	<div class="cancel btn">Cancel</div>
+	<div class="done btn">{{#if title}}Save Changes{{else}}Add to {{listTitle}}{{/if}}</div>
+	</div>
+</div>
+</div>

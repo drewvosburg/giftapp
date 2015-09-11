@@ -1,0 +1,19 @@
+<div id="dim"></div>
+<div class="table-cell">
+<div class="modal claim">
+	<div class="menubar"><div class="closeBtn"></div><span class="btn">Claim</span></div>
+	<div class="form">
+		Do you promise to give<h2>{{title}}</h2>to<h2>{{name}}?</h2>
+		{{#compare quantity ">" "1"}}
+		<div class="formRow">
+			<label for="qty">Quantity</label>
+			<input id="qty" type="number" min="1" {{#if quantity}}value="{{quantity}}"{{else}}value="1"{{/if}} />
+		</div>
+		{{/compare}}
+	</div>
+	<div class="buttons">
+	<div class="cancel btn">Nope</div>
+	<div class="done btn">Pinkie Promise</div>
+	</div>
+</div>
+</div>

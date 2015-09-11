@@ -1,0 +1,16 @@
+<div>
+	<h2>{{title}}
+		<span class="timeLeft">
+			{{#formatTime}}{{date}}{{/formatTime}}
+		</span>
+	</h2>
+	{{#if items}}
+	<ul>
+	{{#each items}}
+	<li>{{title}}</li>
+	{{/each}}
+	</ul>
+	{{else}}
+	You haven't added anything this list yet, get on it!
+	{{/if}}
+</div>

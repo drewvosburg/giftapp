@@ -1,0 +1,15 @@
+<div class="{{#beforeNow date}}{{/beforeNow}}">
+
+	<h2>{{name}} - {{title}}
+	</h2>
+	<ul>
+	{{#compare date "!=" "none"}}<li>{{#formatTime}}{{date}}{{/formatTime}}</li>{{/compare}}
+	{{#each items}}
+	<li>{{title}}</li>
+	{{/each}}
+	{{#if items}}
+	{{else}}
+	You haven't added anything this list yet, get on it!
+	{{/if}}
+	</ul>
+</div>

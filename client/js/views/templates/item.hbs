@@ -1,0 +1,27 @@
+
+
+
+{{#each this}}
+<div class="col-md-4 col-sm-6 col-xs-12">
+<div class="item" id="{{id}}">
+
+{{#if image}}<div class="image" style="background-image:url('{{image}}')"></div>{{/if}}
+<h2>{{#if title}}{{title}}{{else}}Untitled item{{/if}}</h2>
+<div class="{{#if claim}}claim{{/if}}">
+{{#if url}}
+<a href="{{url}}" target="_blank"><span class="price btn">{{#if price}}${{price}}{{else}}Available{{/if}} from <span class="site">{{#site}}{{url}}{{/site}}</span> &#8594;</span></a>
+{{else}}
+{{#if price}}<span class="price btn">${{price}}</span>{{/if}}
+{{/if}}
+{{#if claim}}
+<div class="claim btn">Give This</div>
+{{/if}}
+</div>
+{{#if mine}}
+<div class="edit btn">Edit</div>
+<div class="delete btn">Remove</div>
+{{/if}}
+
+</div>
+</div>
+{{/each}}
