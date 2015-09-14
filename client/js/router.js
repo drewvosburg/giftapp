@@ -3,7 +3,8 @@ import Wish from './views/wish';
 import List from './views/list';
 import SharedList from './views/sharedList';
 import Give from './views/give';
-import Three from './views/three';
+import Shop from './views/shop';
+import ShopList from './views/shopList';
 import Utils from './modules/utils';
 
 
@@ -13,8 +14,9 @@ var ApplicationRouter = Backbone.Router.extend({
     	'wish': 'wish',
         'list?:query': 'list',
         'shared-list?:query': 'sharedList',
-        'three': 'three',
         'give': 'give',
+        'shop': 'shop',
+        'shop-list?:query': 'shopList',
         '*actions': 'wish' // Backbone will try to match the route above first
     },
 
@@ -65,15 +67,23 @@ var ApplicationRouter = Backbone.Router.extend({
         });
         app.manager.goto(view);
     },
-
-    three: function() {
-
-        var view = new Three({
+    shop: function() {
+        var view = new Shop({
             tagName:'section',
-            id: 'three'
+            id: 'shop'
         });
         app.manager.goto(view);
     },
+    shopList: function(query) {
+        var params = Utils.parseQueryString(query);
+        var view = new ShopList({
+            tagName:'section',
+            id: 'shopList',
+            listId: params.l
+        });
+        app.manager.goto(view);
+    },
+
 });
 
 export default ApplicationRouter;

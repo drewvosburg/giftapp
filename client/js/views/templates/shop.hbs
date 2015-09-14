@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row no-mobile">
+		<div class="col-xs-12">
+			<h1>Gifts you are giving for:</h1>
+		</div>
+	</div>
+	<div class="row" id="list">
+			{{#each this}}
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="listEntry" id="{{this.0.type}}">
+					<h2>{{#getEnglish}}{{this.0.type}}{{/getEnglish}}</h2>
+					<ul>
+						{{#each this}}
+						<li>{{owner}}</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+			{{else}}
+			<!-- If there is nothing, say no lists have been shared -->
+			<div class="col-xs-12">You haven't promised to give anything yet</div>
+
+			{{/each}}
+	</div>
+</div>

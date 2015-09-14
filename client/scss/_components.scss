@@ -95,6 +95,7 @@ header {
     max-width: 400px;
     margin: 0 auto;
     margin-bottom: 20px;
+    position: relative;
     &:after {
         display: block;
         position: relative;
@@ -185,6 +186,7 @@ header {
 .listEntry {
     @extend .item;
     cursor: pointer;
+    position: relative;
     &:before {
         @extend %pseudo-block;
         right: 30px;
@@ -206,6 +208,8 @@ header {
         margin-top: 0;
         margin-right: 20px;
         font-weight: 600;
+        font-size: 21px;
+        line-height: 32px;
     }
     .timeLeft, ul {
         font-size: 14px;
@@ -526,6 +530,42 @@ h1 {
         color: $grey;
     }
 }
+#shopList {
+    .item {
+        max-width: none;
+        .checkbox {
+            width: 60px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            &:before {
+                @extend %pseudo-block;
+                width: 20px;
+                height: 20px;
+                border: 2px solid #ddd;
+                top: 50%;
+                left: 50%;
+                margin-top: -10px;
+                margin-left: -10px;
+            }
+            &.true:after {
+                @extend %pseudo-block;
+                top: 50%;
+                left: 50%;
+                margin-top: -5px;
+                margin-left: -6px;
+                width: 12px;
+                height: 7px;
+                transform: rotate(-45deg);
+                border: 3px solid $highlight;
+                border-top: none;
+                border-right: none;
+            }
+        }
+    }
+}
 input {
     width: 100%;
     border: 1px solid #ddd;
@@ -584,6 +624,8 @@ and (max-device-width : 736px) { /* STYLES GO HERE */
         }
         h2 {
             margin-bottom: 0;
+            font-size: 16px;
+            line-height: 20px;
         }
         &:before {
             right: 20px;

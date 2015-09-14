@@ -11,15 +11,6 @@ var nav = Backbone.View.extend({
         'click .addBtn': function(){
         Backbone.trigger('nav:addButtonPressed');
         },
-
-        // THIS NEEDS TO BE ADDRESSED! (later.)
-        // -----------------------------------------------
-        // ||   Sometimes you will be given this link   ||
-        // ||   and the back button should go to the    ||
-        // ||   the base lists page. I guess.           ||
-        // -----------------------------------------------
-
-
         'click .backBtn': 'goBack'
     },
 

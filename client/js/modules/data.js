@@ -12,7 +12,7 @@ function DemoData() {
 	        		'id': "0",
 	        		'name': "Drew Vosburg",
 	        		'email': "drew@vosburgs.org",
-	        		//obvi not going to do plaintext.
+	        		//obvi not going to do plaintext passwords.
 	        		'password': "password123",
 	        		'lists': [
 	        			'list0',
@@ -23,6 +23,23 @@ function DemoData() {
 	        ];
         	return users;
         },
+        claimed: function() {
+            var claimed = [
+                {
+                    'item': 'item1',
+                    'listId': 'list0',
+                    'claimerId': "0",
+                    'gotten': false
+                },
+                {
+                    'item': 'item10',
+                    'listId': 'list2',
+                    'claimerId': "0",
+                    'gotten': true
+                }
+            ];
+            return claimed;
+        },
         lists: function() {
         	var lists = [
         		{
@@ -31,7 +48,8 @@ function DemoData() {
         			'created': "auto",
         			'type': "christmas",
         			'title': "Christmas List",
-        			'date': 1451019600,
+                    // not sure how I should store timestamps, UNIX feels shortsighted...
+        			'date': "2015-12-24T23:00:00-06:00",
         			'items': [
         				'item0',
         				'item1',
@@ -48,7 +66,7 @@ function DemoData() {
         			'created': "auto",
         			'type': "birthday",
         			'title': "Birthday List",
-        			'date': 1451019600,
+        			'date': "2016-01-16T23:00:00-06:00",
         			'items': [
         				'item4',
         				'item5',
@@ -95,7 +113,7 @@ function DemoData() {
 	                'price': 20,
 	                'image': "http://ecx.images-amazon.com/images/I/51OGiB1j3KL._SY679_.jpg",
 	                'url': "http://www.amazon.com/KeySmart-Compact-Key-Holder-Black/dp/B00JOFJJ5Y/ref=pd_sim_229_2?ie=UTF8&refRID=0GVFH7Y5EHXCHC7VB1YY&dpSrc=sims&dpST=_AC_UL160_SR160%2C160_",
-	            	'claimed': false
+	            	'claimed': true
 	            },
     			{
     				'id': 'item2',
@@ -111,6 +129,7 @@ function DemoData() {
 	                'price': 20,
 	                'image': "http://ecx.images-amazon.com/images/I/51OGiB1j3KL._SY679_.jpg",
 	                'url': "http://www.amazon.com/KeySmart-Compact-Key-Holder-Black/dp/B00JOFJJ5Y/ref=pd_sim_229_2?ie=UTF8&refRID=0GVFH7Y5EHXCHC7VB1YY&dpSrc=sims&dpST=_AC_UL160_SR160%2C160_",
+                    'claimed': false
 	            },
     			{
     				'id': 'item4',
@@ -166,7 +185,7 @@ function DemoData() {
 	                'price': 20,
 	                'image': "http://ecx.images-amazon.com/images/I/51OGiB1j3KL._SY679_.jpg",
 	                'url': "http://www.amazon.com/KeySmart-Compact-Key-Holder-Black/dp/B00JOFJJ5Y/ref=pd_sim_229_2?ie=UTF8&refRID=0GVFH7Y5EHXCHC7VB1YY&dpSrc=sims&dpST=_AC_UL160_SR160%2C160_",
-	                'claimed': false
+	                'claimed': true
 	            },
     			{
     				'id': 'item11',

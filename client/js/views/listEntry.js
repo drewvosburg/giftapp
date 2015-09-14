@@ -8,7 +8,7 @@ var listEntry = BaseView.extend({
         Handlebars.registerHelper('formatTime', function(options) {
             var timestamp = options.fn(this);
             if (timestamp && parseInt(timestamp)) {
-                timestamp = moment.unix(timestamp).fromNow()
+                timestamp = moment(timestamp).fromNow()
                 return new Handlebars.SafeString("(" + timestamp + ")")
             }
         });
