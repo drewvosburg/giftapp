@@ -1,11 +1,11 @@
 <div class="container">
 	<div class="row no-mobile">
 		<div class="col-xs-12">
-			<h1>Gifts you are giving for:</h1>
+			<h1>{{title}} shopping:</h1>
 		</div>
 	</div>
 	<div class="row" id="list">
-			{{#each this}}
+			{{#each lists}}
 			<!-- this second loop is the product of weird underscore results.  Probably can be refactored out. -->
 			{{#each this}}
 				<div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10 col-xs-12" >
@@ -16,11 +16,24 @@
 				<div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10 col-xs-12" >
 					<div class="item">
 					<div class="checkbox {{gotten}}" data-checked="{{gotten}}"></div>
+					{{#if url}}
+					<div class="no-mobile">
+					<a href="{{url}}" target="_blank"><span class="table"><span class="table-cell"><span class="price btn">{{#if price}}${{price}}{{else}}Available{{/if}} from <span class="site">{{#site}}{{url}}{{/site}}</span> &#8594;</span></span></span></a>
+					</div>
+					{{else}}
+					<div class="no-mobile">
+					{{#if price}}<span class="table"><span class="table-cell"><span class="price btn">${{price}}</span></span></span>{{/if}}
+					</div>
+					{{/if}}
 					<h2>{{title}}</h2>
 					{{#if url}}
-					<a href="{{url}}" target="_blank"><span class="price btn">{{#if price}}${{price}}{{else}}Available{{/if}} from <span class="site">{{#site}}{{url}}{{/site}}</span> &#8594;</span></a>
+					<div class="mobile-only">
+					<a href="{{url}}" target="_blank"><span class="table"><span class="table-cell"><span class="price btn">{{#if price}}${{price}}{{else}}Available{{/if}} from <span class="site">{{#site}}{{url}}{{/site}}</span> &#8594;</span></span></span></a>
+					</div>
 					{{else}}
-					{{#if price}}<span class="price btn">${{price}}</span>{{/if}}
+					<div class="mobile-only">
+					{{#if price}}<span class="table"><span class="table-cell"><span class="price btn">${{price}}</span></span></span>{{/if}}
+					</div>
 					{{/if}}
 					</div>
 				</div>

@@ -46,7 +46,8 @@ var shop = BaseView.extend({
 
         var selection = _.where(self.claimed, {'claimerId': self.userId});
         selection = _.groupBy(selection, 'listId');
-        var lists = []
+        var lists = [];
+        console.log(selection);
         _.each(selection, function(list) {
             // This is a little complex, we're touching lots of tables, so hang with me.
 

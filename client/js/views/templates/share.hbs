@@ -1,11 +1,16 @@
-<div class="formRow">
+{{#if active}}<div class="formRow">
 	<label for="shareInput">Person</label>
 	<input id="shareInput" type="email" required="true" placeholder='Enter an email address' />
 	<div class="shareEmailBtn btn">Add</div>
 </div>
-{{#if this.length}}
+{{/if}}
+{{#if people.length}}
 <label>Shared with</label>
-{{#each this}}<div class="sharedWith" id="{{id}}"><span>{{name}}</span><div class="delete btn">Unshare</div>{{/each}}
+{{#if active}}
+{{#each this.people}}<div class="sharedWith" id="{{id}}"><span>{{name}}</span><div class="delete btn">Unshare</div>{{/each}}
+{{else}}
+{{#each this.people}}<div class="sharedWith" id="{{id}}"><span>{{name}}</span>{{/each}}
+{{/if}}
 {{else}}
 <div class="explainer">To share your list with friends and family, add their email address to box above and click "Add"</div>
 {{/if}}

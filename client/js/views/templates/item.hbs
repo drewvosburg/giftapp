@@ -3,23 +3,41 @@
 
 {{#each this}}
 <div class="col-md-4 col-sm-6 col-xs-12">
-<div class="item" id="{{id}}">
+<div class="item 
+{{#if claim}}claimed-{{claimed}}{{/if}}{{#if byMe}} byme{{/if}}" id="{{id}}">
 
-{{#if image}}<div class="image" style="background-image:url('{{image}}')"></div>{{/if}}
+{{#if image}}<div class="image" style="background-image:url('{{image}}')"></div>{{else}}
+<div class="image no-image"></div>
+{{/if}}
 <h2>{{#if title}}{{title}}{{else}}Untitled item{{/if}}</h2>
 <div class="{{#if claim}}claim{{/if}}">
 {{#if url}}
 <a href="{{url}}" target="_blank"><span class="price btn">{{#if price}}${{price}}{{else}}Available{{/if}} from <span class="site">{{#site}}{{url}}{{/site}}</span> &#8594;</span></a>
 {{else}}
-{{#if price}}<span class="price btn">${{price}}</span>{{/if}}
+{{#if price}}<span class="price btn">${{price}}</span>
+{{else}}<span class="spacer btn"></span>
+{{/if}}
 {{/if}}
 {{#if claim}}
+{{#if claimed}}
+{{#if byMe}}
+<div class="explainer">You promised to give this item</div>
+{{#if active}}
+<div class="unclaim btn">Unclaim This</div>
+{{/if}}
+{{/if}}
+{{else}}
+{{#if active}}
 <div class="claim btn">Give This</div>
+{{/if}}
+{{/if}}
 {{/if}}
 </div>
 {{#if mine}}
+{{#if active}}
 <div class="edit btn">Edit</div>
 <div class="delete btn">Remove</div>
+{{/if}}
 {{/if}}
 
 </div>

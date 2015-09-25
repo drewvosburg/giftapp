@@ -21,7 +21,6 @@ body {
 }
 // Nav menu
 // ==============================================================================
-
 header {
     display: block;
     position: fixed;
@@ -76,6 +75,59 @@ header {
             }
         }
     }
+    .user {
+        float: right;
+        text-align: center;
+        height: 80px;
+        color: $text;
+        text-transform: uppercase;
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        min-width: 80px;
+        padding: 0 20px;
+        position: relative;
+        cursor: pointer;
+        ul {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0px;
+            margin-top: 0;
+            padding-top: 20px;
+            li {
+                background-color: $white;
+                line-height: 20px;
+                width: 180px;
+                text-transform: none;
+                font-weight: normal;
+                list-style-type: none;
+                padding: 10px 20px;
+                text-align: left;
+                box-shadow: 0 2px 5px rgba($black,0.1);
+                border-bottom: 1px solid #ddd;
+                &:last-child {
+                    border-bottom: none;
+                }
+                &:first-child {
+                    border-top: 1px solid #ddd;
+                }
+                &:hover {
+                    background-color: darken($white, 2%);
+                }
+            }
+        }
+        &:hover {
+            background-color: darken($white, 2%);
+            ul {
+                display: block;
+                &:hover {
+                    display: block;
+                }
+            }
+        }
+    }
     #mobile-header {
         display: none;
         @extend a.logo;
@@ -108,6 +160,20 @@ header {
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+        &.no-image {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     x="0px" y="0px" viewBox="0 0 276 276" xml:space="preserve">
+<g>
+    <rect fill="#ddd" x="55" y="99" width="66" height="42"/>
+    <rect fill="#ddd" x="66" y="153" width="55" height="85"/>
+    <rect fill="#ddd" x="154" y="99" width="66" height="42"/>
+    <rect fill="#ddd" x="154" y="153" width="55" height="85"/>
+</g>
+<path fill="none" stroke="#ddd" stroke-width="10" stroke-miterlimit="10" d="M190.1,65.3c0,12-9.7,21.7-21.7,21.7
+    c-12,0-30.4,0-30.4,0s6.8-41.4,30.4-41.4C180.4,45.6,190.1,53.3,190.1,65.3z M86,65.3c0,12,9.7,21.7,21.7,21.7s30.4,0,30.4,0
+    s-6.8-41.4-30.4-41.4C95.7,45.6,86,53.3,86,65.3z"/>
+</svg>');
+        }
     }
     h2 {
         margin: 20px 0;
@@ -145,9 +211,12 @@ header {
             background-color: rgba($grey, 0.05);
         }
     }
+    .spacer.btn {
+        display: block;
+    }
     .site {
     }
-    .claim.btn {
+    .claim.btn, .unclaim.btn {
         text-align: center;
         font-weight: 600;
         font-size: 14px;
@@ -533,6 +602,7 @@ h1 {
 #shopList {
     .item {
         max-width: none;
+        height: 120px;
         .checkbox {
             width: 60px;
             height: 100%;
@@ -564,6 +634,35 @@ h1 {
                 border-right: none;
             }
         }
+        .image {
+            width: 80px;
+            height: 80px;
+            float: left;
+            margin-left: 40px;
+            background-size: contain;
+            background-position: center center;
+        }
+        h2 {
+            text-align: left;
+            line-height: 40px;
+            margin: 20px 0;
+            margin-left: 20px;
+            padding: 0 20px;
+        }
+        .table {
+            float: right;
+            height: 80px;
+            display: table;
+            .table-cell {
+                vertical-align: middle;
+                display: table-cell;
+                .price {
+                    float: right;
+                    width: auto;
+                    display: inline-block;
+                }
+            }
+        }
     }
 }
 input {
@@ -581,6 +680,26 @@ label {
     font-weight: 600;
     cursor: pointer;
 }
+.over {
+    opacity: 0.4;
+}
+.claimed-true {
+    opacity: 0.4;
+    &.byme {
+        opacity: 1;
+        .explainer {
+            color: $grey;
+            margin-top: 20px;
+            text-align: center;
+        }
+    }
+}
+#claimed {
+    margin-top: 50px;
+}
+.past {
+    margin-top: 60px;
+}
 // ==============================================================================
 //                                    Mobile                                   //
 // ==============================================================================
@@ -588,7 +707,14 @@ label {
 @media only screen 
 and (max-device-width : 736px) { /* STYLES GO HERE */
     body {
-        background-color: #fff;
+        background-color: $white;
+    }
+    #status-bar {
+        background: red; width:100%; position: fixed; top:-20px; height: 20px; opacity: 0.95;
+        z-index: 100;
+    }
+    #claimed h2 {
+        text-align: center;
     }
     .item {
         margin: 30px 10px 0 10px;
@@ -597,14 +723,19 @@ and (max-device-width : 736px) { /* STYLES GO HERE */
         float: none;
         box-shadow: none;
         border-bottom: 1px solid #ddd;
-        .btn, .claim.btn {
+        .btn, .claim.btn, .unclaim.btn {
             //font-size: 16px;
             height: 44px;
             line-height: 24px;
             font-weight: normal;
         }
-        .claim.btn {
+        .claim.btn, .unclaim.btn {
             font-size: 16px;
+        }
+        .spacer.btn {
+            height: 0;
+            padding: 0;
+            margin-top: -20px;
         }
     }
     .price {
@@ -739,7 +870,7 @@ and (max-device-width : 736px) { /* STYLES GO HERE */
         }
     }
     .no-mobile {
-        display: none;
+        display: none!important;
     }
     #modal {
         .table-cell .modal {
@@ -831,6 +962,38 @@ and (max-device-width : 736px) { /* STYLES GO HERE */
         .shareEmailBtn {
             width: 100%;
             margin-top: 10px;
+        }
+    }
+    #sharedList {
+
+        .spacer.btn {
+            margin-top: 0px;
+        }
+    }
+    #shopList {
+        .item {
+            height: auto;
+            .checkbox {
+                height: 50px;
+                margin-left: -20px;
+            }
+            .image {
+                width: 60px;
+                height: 60px;
+                margin-left: 35px;
+            }
+            h2 {
+                margin: 0;
+                line-height: 50px;
+                margin-bottom: 20px;
+                margin-left: 20px;
+            }
+            .mobile-only, a, .table, .table-cell, .price {
+                float: none!important;
+                display: block!important;
+                height: auto!important;
+                width: 100%!important;
+            }
         }
     }
 }

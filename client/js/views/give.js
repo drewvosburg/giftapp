@@ -32,15 +32,32 @@ var give = BaseView.extend({
             return list.sharedWith.indexOf(self.userId) > -1;
         });
         selection = _.sortBy(lists, 'date');
-        for (i=0;i<selection.length;i++) {
-            var model = selection[i];
+        var past = [];
+        var noTime = [];
+        var future = [];
+
+        _.each(selection, function(list) {
+            if (Date.parse(list.date)) {
+                if (moment(list.date) < moment()) {
+                    list.timePassed = true;
+                    past.push(list);
+                } else {
+                    future.push(list);
+                }
+            } else {
+                noTime.push(list)
+            }
+        });
+        _.each(future, function(list) {
+            var model = list;
             var items = [];
-            _.each(selection[i].items, function(item) {
+            _.each(list.items, function(item) {
                 var temp = _.findWhere(self.items, {'id': item});
                 if (temp) { items.push(temp)};
             });
             model.items = items;
-            model.name = _.findWhere(self.users, {'id': selection[i].owner});
+            model.name = _.findWhere(self.users, {'id': list.owner});
+            model.active = true;
             if (model.name) {
                 model.name = model.name.name;
             }
@@ -53,6 +70,58 @@ var give = BaseView.extend({
             var wrapper = $('<div class="col-md-4 col-sm-6 col-xs-12"></div>');
             wrapper.append(card.$el);
             self.$('#list').append(wrapper);
+        });
+        _.each(noTime, function(list) {
+            var model = list;
+            var items = [];
+            _.each(list.items, function(item) {
+                var temp = _.findWhere(self.items, {'id': item});
+                if (temp) { items.push(temp)};
+            });
+            model.items = items;
+            model.active = true;
+            model.name = _.findWhere(self.users, {'id': list.owner});
+            if (model.name) {
+                model.name = model.name.name;
+            }
+            var card = new SharedListEntry({
+                'model': model,
+                'className': 'listEntry',
+                'id': model.id
+            });
+            card.render();
+            var wrapper = $('<div class="col-md-4 col-sm-6 col-xs-12"></div>');
+            wrapper.append(card.$el);
+            self.$('#list').append(wrapper);
+        });
+        if (past.length) {
+            var newRow = $('<div class="row"></div>')
+            var divider = $('<div class="col-xs-12"><h2 class="past">Past lists:</h2></div>');
+            newRow.append(divider);
+            _.each(past, function(list) {
+                var model = list;
+                var items = [];
+                _.each(list.items, function(item) {
+                    var temp = _.findWhere(self.items, {'id': item});
+                    if (temp) { items.push(temp)};
+                });
+                model.items = items;
+                model.name = _.findWhere(self.users, {'id': list.owner});
+                if (model.name) {
+                    model.name = model.name.name;
+                    model.active = list.active;
+                }
+                var card = new SharedListEntry({
+                    'model': model,
+                    'className': 'listEntry',
+                    'id': model.id
+                });
+                card.render();
+                var wrapper = $('<div class="col-md-4 col-sm-6 col-xs-12"></div>');
+                wrapper.append(card.$el);
+                newRow.append(wrapper);
+            });
+            self.$('#list').after(newRow);
         }
         return this;
     },

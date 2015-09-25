@@ -12,6 +12,11 @@ var listEntry = BaseView.extend({
                 return new Handlebars.SafeString("(" + timestamp + ")")
             }
         });
+        Handlebars.registerHelper('beforeNow', function (date) {
+            if (moment(date).diff(moment()) < 0) {
+                return "past";
+            }
+        });
     },
 
     events: {

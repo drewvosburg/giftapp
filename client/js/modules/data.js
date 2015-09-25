@@ -32,6 +32,12 @@ function DemoData() {
                     'gotten': false
                 },
                 {
+                    'item': 'item2',
+                    'listId': 'list0',
+                    'claimerId': "0",
+                    'gotten': true
+                },
+                {
                     'item': 'item10',
                     'listId': 'list2',
                     'claimerId': "0",
@@ -42,6 +48,23 @@ function DemoData() {
         },
         lists: function() {
         	var lists = [
+                {
+                    'id': "list1",
+                    'owner': '0',
+                    'created': "auto",
+                    'type': "birthday",
+                    'title': "Birthday List",
+                    'date': "2012-01-16T23:00:00-06:00",
+                    'items': [
+                        'item4',
+                        'item5',
+                        'item6',
+                        'item7'
+                    ],
+                    'sharedWith': [
+                        '0'
+                    ]
+                },
         		{
         			'id': "list0",
                     'owner': '0',
@@ -49,7 +72,7 @@ function DemoData() {
         			'type': "christmas",
         			'title': "Christmas List",
                     // not sure how I should store timestamps, UNIX feels shortsighted...
-        			'date': "2015-12-24T23:00:00-06:00",
+        			'date': "2013-12-24T23:00:00-06:00",
         			'items': [
         				'item0',
         				'item1',
@@ -61,29 +84,12 @@ function DemoData() {
     				]
         		},
         		{
-        			'id': "list1",
-                    'owner': '0',
-        			'created': "auto",
-        			'type': "birthday",
-        			'title': "Birthday List",
-        			'date': "2016-01-16T23:00:00-06:00",
-        			'items': [
-        				'item4',
-        				'item5',
-        				'item6',
-        				'item7'
-    				],
-    				'sharedWith': [
-    					'0'
-    				]
-        		},
-        		{
         			'id': "list2",
                     'owner': '0',
         			'created': "auto",
         			'type': "wishlist",
         			'title': "Wish List",
-        			'date': "none",
+        			'date': "today",
         			'items': [
         				'item8',
         				'item9',
@@ -101,10 +107,10 @@ function DemoData() {
         	var items = [
     			{
     				'id': 'item0',
-	                'title': "KeySmart - Compact Key Holder (Black)",
-	                'price': 20,
-	                'image': "http://ecx.images-amazon.com/images/I/51OGiB1j3KL._SY679_.jpg",
-	                'url': "http://www.amazon.com/KeySmart-Compact-Key-Holder-Black/dp/B00JOFJJ5Y/ref=pd_sim_229_2?ie=UTF8&refRID=0GVFH7Y5EHXCHC7VB1YY&dpSrc=sims&dpST=_AC_UL160_SR160%2C160_",
+	                'title': "Razer Ouroboros",
+	                //'price': 150,
+	                //'image': "http://assets.razerzone.com/eeimages/products/752/razer-ouroboros-gallery-1__store_gallery.png",
+	                //'url': "http://www.razerzone.com/store/razer-ouroboros",
 	                'claimed': false
 	            },
     			{
@@ -121,7 +127,7 @@ function DemoData() {
 	                'price': 20,
 	                'image': "http://ecx.images-amazon.com/images/I/51OGiB1j3KL._SY679_.jpg",
 	                'url': "http://www.amazon.com/KeySmart-Compact-Key-Holder-Black/dp/B00JOFJJ5Y/ref=pd_sim_229_2?ie=UTF8&refRID=0GVFH7Y5EHXCHC7VB1YY&dpSrc=sims&dpST=_AC_UL160_SR160%2C160_",
-	            	'claimed': false
+	            	'claimed': true
 	            },
     			{
     				'id': 'item3',

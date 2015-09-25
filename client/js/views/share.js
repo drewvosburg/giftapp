@@ -8,6 +8,7 @@ var share = BaseView.extend({
         self.users = DemoData.users();
         self.lists = DemoData.lists();
         self.listId = options.listId;
+        self.active = options.active;
 
         self.selection = _.findWhere(self.lists, {'id': self.listId});
         self.shareMembers = [];
@@ -27,9 +28,10 @@ var share = BaseView.extend({
     },
 
     render: function() {
-
         var self = this;
-        var template = JST['share.hbs'](self.shareMembers);
+        var model = {'people': self.shareMembers, 'active': self.active};
+        console.log(model)
+        var template = JST['share.hbs'](model);
         self.$el.html(template);
     },
 

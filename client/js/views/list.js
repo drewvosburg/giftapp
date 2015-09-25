@@ -12,9 +12,13 @@ var list = BaseView.extend({
         this.lists = DemoData.lists();
         this.items = DemoData.items();
         this.listId = options.listId;
+        this.active = true;
         var self = this;
         self.selection = _.findWhere(self.lists, {'id': self.listId});
         self.model = self.selection;
+        if (moment(self.selection.date) < moment()) {
+            this.active = false;
+        }     
     },
 
     events: {
@@ -40,7 +44,9 @@ var list = BaseView.extend({
     },
     showList: function () {
         var self = this;
-        Backbone.trigger('title:addButton');
+        if (this.active) {
+            Backbone.trigger('title:addButton');
+        }
         self.$('#list').empty();
 
         self.$('.sharedBtn').removeClass('selected');
@@ -50,6 +56,7 @@ var list = BaseView.extend({
             var model = _.findWhere(self.items, {'id': select});
             if (model) {
                 model.mine = true;
+                model.active = self.active;
                 listItems.push(model)
             }
         });
@@ -69,7 +76,8 @@ var list = BaseView.extend({
         var card = new Share({
             'listId': self.listId,
             'id': "share",
-            'className': 'shareContents'
+            'className': 'shareContents',
+            'active': self.active
         });
         card.render();
         self.$('#list').append(card.$el);

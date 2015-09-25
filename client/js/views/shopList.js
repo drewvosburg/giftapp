@@ -53,8 +53,9 @@ var shopList = BaseView.extend({
             type = "Other";
         }
         var self = this;
+        self.type = type;
         Backbone.trigger('title:update', type);
-        Backbone.trigger('title:noLeftButton');
+        Backbone.trigger('title:backButton', 'shop');
         Backbone.trigger('title:noRightButton');
         Backbone.trigger('nav:shop');
 
@@ -89,8 +90,10 @@ var shopList = BaseView.extend({
             }
         });
         lists = _.groupBy(lists, 'ownerId');
-        console.log("lists", lists);
-        var template = JST['shopList.hbs'](lists);
+        var model = {'title': self.type, 'lists': lists}
+        console.log(model);
+        var template = JST['shopList.hbs'](model);
+
         self.$el.html(template);
         return this;
     },

@@ -36,10 +36,26 @@ var wish = BaseView.extend({
             }
         });
         selection = _.sortBy(lists, 'date');
-        for (i=0;i<selection.length;i++) {
-            var model = selection[i];
+        var past = [];
+        var noTime = [];
+        var future = [];
+        _.each(selection, function(list) {
+            if (Date.parse(list.date)) {
+                console.log(list.date)
+                if (moment(list.date) < moment()) {
+                    list.timePassed = true;
+                    past.push(list);
+                } else {
+                    future.push(list);
+                }
+            } else {
+                noTime.push(list)
+            }
+        });
+        _.each(future, function(list) {
+            var model = list;
             var items = [];
-            _.each(selection[i].items, function(item) {
+            _.each(list.items, function(item) {
                 var temp = _.findWhere(self.items, {'id': item});
                 if (temp) { items.push(temp)};
             });
@@ -53,6 +69,46 @@ var wish = BaseView.extend({
             var wrapper = $('<div class="col-md-4 col-sm-6 col-xs-12"></div>');
             wrapper.append(card.$el);
             self.$('#list').append(wrapper);
+        });
+        _.each(noTime, function(list) {
+            var model = list;
+            var items = [];
+            _.each(list.items, function(item) {
+                var temp = _.findWhere(self.items, {'id': item});
+                if (temp) { items.push(temp)};
+            });
+            model.items = items;
+            var card = new ListEntry({
+                'model': model,
+                'className': 'listEntry',
+                'id': model.id
+            });
+            card.render();
+            var wrapper = $('<div class="col-md-4 col-sm-6 col-xs-12"></div>');
+            wrapper.append(card.$el);
+            self.$('#list').append(wrapper);
+        });
+        if (past.length) {
+            var divider = $('<div class="col-xs-12"><h2 class="past">Past lists:</h2></div>');
+            self.$('#list').append(divider);
+            _.each(past, function(list) {
+                var model = list;
+                var items = [];
+                _.each(list.items, function(item) {
+                    var temp = _.findWhere(self.items, {'id': item});
+                    if (temp) { items.push(temp)};
+                });
+                model.items = items;
+                var card = new ListEntry({
+                    'model': model,
+                    'className': 'listEntry',
+                    'id': model.id
+                });
+                card.render();
+                var wrapper = $('<div class="col-md-4 col-sm-6 col-xs-12"></div>');
+                wrapper.append(card.$el);
+                self.$('#list').append(wrapper);
+            });
         }
         return this;
     },
