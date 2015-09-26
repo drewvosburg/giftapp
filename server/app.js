@@ -14,7 +14,8 @@ app.get('*', function(request, response) {
     response.sendfile('./' + pkg.config.buildFolder + '/index.html');
 });
 
-var server = app.listen((process.env.PORT || pkg.config.serverPort), function() {
+var server = app.listen(80, function() {
+	//(process.env.PORT || pkg.config.serverPort), function() {
 
     var port = server.address().port;
 
