@@ -6,7 +6,7 @@ function Config() {
 
 _.extend(Config.prototype, {
 
-    SiteName: "exodus",
+    SiteName: "wrappd",
 
     init: function() {
       

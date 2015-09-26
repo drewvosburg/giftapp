@@ -54,7 +54,7 @@ function DemoData() {
                     'created': "auto",
                     'type': "birthday",
                     'title': "Birthday List",
-                    'date': "2012-01-16T23:00:00-06:00",
+                    'date': "2016-01-16T23:00:00-06:00",
                     'items': [
                         'item4',
                         'item5',
@@ -72,7 +72,7 @@ function DemoData() {
         			'type': "christmas",
         			'title': "Christmas List",
                     // not sure how I should store timestamps, UNIX feels shortsighted...
-        			'date': "2013-12-24T23:00:00-06:00",
+        			'date': "2015-12-24T23:00:00-06:00",
         			'items': [
         				'item0',
         				'item1',
@@ -108,9 +108,9 @@ function DemoData() {
     			{
     				'id': 'item0',
 	                'title': "Razer Ouroboros",
-	                //'price': 150,
-	                //'image': "http://assets.razerzone.com/eeimages/products/752/razer-ouroboros-gallery-1__store_gallery.png",
-	                //'url': "http://www.razerzone.com/store/razer-ouroboros",
+	                'price': 150,
+	                'image': "http://assets.razerzone.com/eeimages/products/752/razer-ouroboros-gallery-1__store_gallery.png",
+	                'url': "http://www.razerzone.com/store/razer-ouroboros",
 	                'claimed': false
 	            },
     			{

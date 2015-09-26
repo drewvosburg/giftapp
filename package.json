@@ -42,7 +42,7 @@
     "load-grunt-tasks": "^3.1.0"
   },
   "config": {
-    "serverPort": 3000,
+    "serverPort": 80,
     "sourceFolder": "client",
     "buildFolder": "build",
     "preReleaseFolder": ".pre",
