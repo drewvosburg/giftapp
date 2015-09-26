@@ -268,8 +268,8 @@ module.exports = function(grunt) {
         concurrent: {
             all: {
                 options: {
-                    logConcurrentOutput: true,
-      				limit: 6
+                    logConcurrentOutput: true
+      				limit: 16
                 },
                 tasks: [
                     //watch for changes to static files
