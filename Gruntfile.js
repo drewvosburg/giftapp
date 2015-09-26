@@ -268,19 +268,19 @@ module.exports = function(grunt) {
         concurrent: {
             all: {
                 options: {
-      				limit: 8
+                    logConcurrentOutput: true
                 },
                 tasks: [
                     //watch for changes to static files
-                    'watch:data', 'watch:fonts', 'watch:img', 'watch:root',
+                    //'watch:data', 'watch:fonts', 'watch:img', 'watch:root',
                     //watch for changes to css
-                    'watch:css',
+                    //'watch:css',
                     //watch for changes to templates
-                    'watch:hbs',
+                    //'watch:hbs',
                     //watch for changes to client-side app .js
-                    'watch:js',
+                    //'watch:js',
                     //watch for changes to node files
-                    'nodemon'
+                    //'nodemon'
                 ]
             }
         },
